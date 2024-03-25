@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from requests import get
-from re import split
+from pokemonDataExtractor import pokemon_data_extractor
 from json import dump
 
 url = 'https://pokemondb.net/pokedex/national'
@@ -11,18 +11,6 @@ generations = [ generation.text.strip().replace(' Pokémon', '') for generation 
 pokedex = {}
 
 pokemon_data = pageHtml.find_all('div', class_='infocard-list infocard-list-pkmn-lg')
-
-def pokemon_data_extractor(data):
-    pokemon = {}
-    types = []
-    for index, small in enumerate(data.find_all('small')):
-        if index == 0:
-            pokemon['id'] = small.text.strip()
-            continue
-        types = split(" . ", small.text.strip())
-    pokemon['name'] = data.find('a').text.strip()
-    pokemon['types'] = types
-    return pokemon
 
 pokemons = []
 for pokemons_each_generation in pokemon_data:
