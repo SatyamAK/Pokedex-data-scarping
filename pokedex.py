@@ -20,5 +20,5 @@ for pokemons_each_generation in pokemon_data:
 for index, generation in enumerate(generations):
     pokedex[generation] = pokemons[index]
 
-with open('pokedex.json', 'w') as fp:   
+with open('data/pokedex.json', 'w') as fp:   
     dump(pokedex, fp)

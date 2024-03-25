@@ -31,5 +31,6 @@ for index, game_url in enumerate(games_url):
     pokemons = [ pokemon_data_extractor(data) for data in pokemon_data.find_all('span', class_='infocard-lg-data text-muted') ]
     dex['game'] = games[index]
     dex['pokemon'] = pokemons
-    with open(game_name_processor(games[index]), 'w') as fp:   
+    file_path = "data/"+game_name_processor(games[index])+'.json'
+    with open(file_path, 'w') as fp:   
         dump(dex, fp)
